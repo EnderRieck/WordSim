@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node.js
+node_modules/
+dist/
+
+# IDE
+.vscode/
+.claude/
+.codex/
+AGENTS.md
+CLAUDE.md
+
+# Training
+checkpoints/
+artifacts/
+model_cache/
+wandb/
+
+# Notes
+note.md
+report.md
+
+# OS
+.DS_Store

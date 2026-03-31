@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BERT 句子相似度计算</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>句子相似度对比</h1>
+        <p class="subtitle">支持基座模型、LCQMC 微调模型和中文强基线的统一对比</p>
+
+        <div class="control-panel">
+            <div class="input-group">
+                <label for="modelSelect">分析模型</label>
+                <select id="modelSelect"></select>
+                <div id="modelHint" class="helper-text"></div>
+            </div>
+
+            <div class="action-row">
+                <button id="analyzeButton" type="button">单模型分析</button>
+                <button id="compareButton" type="button" class="secondary-button">三模型对比</button>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="sentence1">句子 1</label>
+            <textarea id="sentence1" placeholder="输入第一个句子..."></textarea>
+        </div>
+
+        <div class="input-group">
+            <label for="sentence2">句子 2</label>
+            <textarea id="sentence2" placeholder="输入第二个句子..."></textarea>
+        </div>
+
+        <div id="result" class="result hidden">
+            <div class="result-header">
+                <div class="score-label">单模型结果</div>
+                <div class="result-model" id="resultModelName"></div>
+            </div>
+            <div class="score-value" id="scoreValue">0.00</div>
+            <div class="score-aux" id="scoreAux"></div>
+            <div class="score-bar">
+                <div class="score-fill" id="scoreFill"></div>
+            </div>
+            <div class="time" id="timeValue"></div>
+        </div>
+
+        <div id="comparison" class="comparison hidden">
+            <div class="comparison-header">
+                <h3>模型对比</h3>
+                <p>按归一化分数从高到低排序</p>
+            </div>
+            <div id="comparisonList" class="comparison-list"></div>
+        </div>
+
+        <div id="visualization" class="visualization hidden">
+            <h3>层间分数演化</h3>
+            <div class="canvas-container">
+                <canvas id="scoreChart"></canvas>
+            </div>
+
+            <h3>注意力可视化</h3>
+            <div class="controls">
+                <label for="layerSelect">
+                    选择层级：
+                    <select id="layerSelect"></select>
+                </label>
+            </div>
+            <div class="canvas-container">
+                <canvas id="attentionCanvas"></canvas>
+            </div>
+            <div id="hoverInfo" class="hover-info hidden"></div>
+        </div>
+
+        <div id="loading" class="loading hidden">计算中...</div>
+        <div id="error" class="error hidden"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
